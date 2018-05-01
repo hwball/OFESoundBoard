@@ -8,3 +8,5 @@ C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.csproj.CoreCompileInputs.cach
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.csproj.CopyComplete
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.exe
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.pdb
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\libvideo.dll
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\MediaToolkit.dll

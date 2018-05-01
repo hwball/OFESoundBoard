@@ -1,0 +1,9 @@
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\OFE.exe.config
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\OFE.exe
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\OFE.pdb
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\NAudio.dll
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\NAudio.xml
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.csproj.CopyComplete
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.exe
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.pdb

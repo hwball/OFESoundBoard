@@ -1,4 +1,6 @@
-﻿using NAudio.Wave;
+﻿using MediaToolkit;
+using MediaToolkit.Model;
+using NAudio.Wave;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,26 +8,33 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VideoLibrary;
 
 namespace OFE
 {
     class Program
     {
         static string soundboardPath = "C:\\Users\\Hamish\\Music\\Soundboard\\";
+        static string videoDownloadPath = "C:\\Users\\Hamish\\Music\\Youtube\\";
 
         static string help =
-                        "___________________________\n\n" +
-                        "fly    - 'Fly You Fools'\n" +
-                        "deja   - 'Deja Vu' \n" +
-                        "a      - 'Metal Gear alert' \n" +
-                        "m      - 'Mission Failed' \n" +
-                        "r      - 'Why are you running' \n" +
-                        "mad    - 'Is only game' \n" +
-                        "shroud - 'The fuck i am' \n" +
-                        "nani   - 'Nani!'\n" +
-                        "omae   - 'Omae wa'\n" +
-                        "off    - 'oof'" +
-                        "\n\n___________________________\n\n";
+                        "___________________________________________________________\n\n" +
+                        "help               - Show Commands \n"+
+                        "hotkey             - start to hot key mode\n"+
+                        "numLock            - Stop hotkey mode\n"+
+                        "play <youtube_Url> - plays the audio from the video \n"+
+                        "\n"+
+                        "fly                - 'Fly You Fools'\n" +
+                        "deja               - 'Deja Vu' \n" +
+                        "a                  - 'Metal Gear alert' \n" +
+                        "m                  - 'Mission Failed' \n" +
+                        "r                  - 'Why are you running' \n" +
+                        "mad                - 'Is only game' \n" +
+                        "shroud             - 'The fuck i am' \n" +
+                        "nani               - 'Nani!'\n" +
+                        "omae               - 'Omae wa'\n" +
+                        "off                - 'oof'" +
+                        "\n\n___________________________________________________________\n\n";
 
         private static void InjectMicrophone(string audioFileName)
         {
@@ -113,6 +122,36 @@ namespace OFE
             }
         }
 
+        public static void play_youtube_audio(string url)
+        {
+            YouTube youtube = YouTube.Default;
+            Video vid = youtube.GetVideo(url);
+            System.IO.File.WriteAllBytes(videoDownloadPath + vid.FullName, vid.GetBytes());
+
+            var inputFile = new MediaFile { Filename = videoDownloadPath + vid.FullName };
+            var outputFile = new MediaFile { Filename = $"{videoDownloadPath + vid.FullName}.mp3" };
+
+            using (var engine = new Engine())
+            {
+                engine.GetMetadata(inputFile);
+
+                engine.Convert(inputFile, outputFile);
+            }
+            InjectMicrophone(outputFile.Filename);
+
+
+            //removes files when done
+            if (System.IO.File.Exists(inputFile.Filename))
+            {
+                System.IO.File.Delete(inputFile.Filename);
+            }
+            if (System.IO.File.Exists(outputFile.Filename))
+            {
+                System.IO.File.Delete(outputFile.Filename);
+            }
+
+        }
+
         public static void kbh_OnKeyPressed(object sender, Keys e)
         {
 
@@ -145,34 +184,38 @@ namespace OFE
                 case Keys.NumPad9:
                     CheckForSound("nani");
                     break;
+                case Keys.NumLock:
+                    Application.Exit();
+                    break;
             }
-        }
+        }    
 
         static void Main(string[] args) //build : dotnet build -r win10-x64
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(true);
 
-            bool run = true;
             Console.WriteLine(help);
-
-            LowLevelKeyboardHook kbh = new LowLevelKeyboardHook();
-            kbh.OnKeyPressed += kbh_OnKeyPressed;
-            kbh.HookKeyboard();
-
-            Application.Run();
-
-            kbh.UnHookKeyboard();
-
-            while (run)
+            while (true)
             {
                 string line = Console.ReadLine();
-                if (line == "exit") // Check string
+                if (line == "exit") // exit check
                 {
-                    run = false;
                     break;
+                }else if (line.ToLower() == "hotkey") //hot key mode
+                {
+                    LowLevelKeyboardHook kbh = new LowLevelKeyboardHook();
+                    kbh.OnKeyPressed += kbh_OnKeyPressed;
+                    kbh.HookKeyboard();
+
+                    Application.Run();
+
+                    kbh.UnHookKeyboard(); 
+                }else if(line.ToLower().StartsWith("play ")) //youtube mode
+                {
+                    play_youtube_audio(line.Substring(5, line.Length-5));
                 }
-                else
+                else //console mode
                 {
                     CheckForSound(line);
                 }
