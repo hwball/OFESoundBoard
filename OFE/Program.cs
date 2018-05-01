@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OFE
 {
@@ -112,10 +113,56 @@ namespace OFE
             }
         }
 
+        public static void kbh_OnKeyPressed(object sender, Keys e)
+        {
+
+            switch (e)
+            {
+                case Keys.NumPad1:
+                    CheckForSound("fly");
+                    break;
+                case Keys.NumPad2:
+                    CheckForSound("oof");
+                    break;
+                case Keys.NumPad3:
+                    CheckForSound("oof");
+                    break;
+                case Keys.NumPad4:
+                    CheckForSound("r");
+                    break;
+                case Keys.NumPad5:
+                    CheckForSound("a");
+                    break;
+                case Keys.NumPad6:
+                    CheckForSound("deja");
+                    break;
+                case Keys.NumPad7:
+                    CheckForSound("m");
+                    break;
+                case Keys.NumPad8:
+                    CheckForSound("mad");
+                    break;
+                case Keys.NumPad9:
+                    CheckForSound("nani");
+                    break;
+            }
+        }
+
         static void Main(string[] args) //build : dotnet build -r win10-x64
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             bool run = true;
             Console.WriteLine(help);
+
+            LowLevelKeyboardHook kbh = new LowLevelKeyboardHook();
+            kbh.OnKeyPressed += kbh_OnKeyPressed;
+            kbh.HookKeyboard();
+
+            Application.Run();
+
+            kbh.UnHookKeyboard();
 
             while (run)
             {
