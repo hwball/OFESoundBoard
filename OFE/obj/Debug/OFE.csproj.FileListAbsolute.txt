@@ -1,0 +1,10 @@
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\OFE.exe.config
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\OFE.exe
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\OFE.pdb
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\NAudio.dll
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Debug\NAudio.xml
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.csprojResolveAssemblyReference.cache
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.csproj.CoreCompileInputs.cache
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.csproj.CopyComplete
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.exe
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Debug\OFE.pdb
