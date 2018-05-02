@@ -7,3 +7,6 @@ C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.csproj.CoreCompileInputs.ca
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.csproj.CopyComplete
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.exe
 C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.pdb
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\libvideo.dll
+C:\Users\Hamish\source\repos\OFE\OFE\bin\Release\MediaToolkit.dll
+C:\Users\Hamish\source\repos\OFE\OFE\obj\Release\OFE.csprojResolveAssemblyReference.cache
