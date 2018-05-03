@@ -53,19 +53,19 @@ namespace OFE
             "___________________________________________________________\n\n";
 
         static string hotkeyHelp =
-            "___________________________________________\n\n" +
-            "NumLock            - 'Turn Off hotkeys'    \n" +
-            "\n" +
-            "__________________________________________ \n" +
-            "   Numpad 7   |   Numpad 8   |   Numpad 9  \n" +
-            "  '!Sense'    |'Is Only Game'|   'Nani!'   \n" +
-            "______________|______________|___________  \n" +
-            "   Numpad 4   |   Numpad 5   |   Numpad 6  \n" +
-            " 'Why Running'|   'Alert'    |   'Deja Vu' \n" +
-            "______________|______________|____________ \n" +
-            "   Numpad 1   |   Numpad 1   |   Numpad 1  \n" +
-            "  'Run Away'  |   'Losing'   |   'Wining'  \n" +
-            "______________|______________|___________  \n";
+            " __________________________________________  \n" +
+            "|                                          | \n" +
+            "| NumLock       -      'Turn Off hotkeys'  | \n" +
+            "|__________________________________________| \n" +
+            "|   Numpad 7   |   Numpad 8   |   Numpad 9 | \n" +
+            "|  '!Sense'    |'Is Only Game'|   'Nani!'  | \n" +
+            "|______________|______________|____________| \n" +
+            "|   Numpad 4   |   Numpad 5   |   Numpad 6 | \n" +
+            "| 'Why Running'|   'Alert'    |   'Deja Vu'| \n" +
+            "|______________|______________|____________| \n" +
+            "|   Numpad 1   |   Numpad 2   |   Numpad 3 | \n" +
+            "|  'Run Away'  |   'Losing'   |   'Wining' | \n" +
+            "|______________|______________|____________| \n";
 
         private static Random random = new Random();
 
@@ -104,6 +104,9 @@ namespace OFE
                 case "help":
                     Console.Clear();
                     Console.WriteLine(help);
+                    break;
+                case "clear":
+                    Console.Clear();
                     break;
                 case "fly":
                     Console.WriteLine("Playing 'Fly You Fools'");
@@ -271,36 +274,50 @@ namespace OFE
                     break;
                 case Keys.NumPad2://sad/losing
                     CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment"}));
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad3://winning
                     CheckForSound(Pickrandom(new List<string> { "sweet victory", "champions", "lol victoy" }));
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad4:
                     CheckForSound("r");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad5:
                     CheckForSound("a");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad6:
                     CheckForSound("deja");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad7:
                     CheckForSound("kronk");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad8:
                     CheckForSound("mad");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad9:
                     CheckForSound("nani");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumLock:
                     Console.Clear();
                     Console.WriteLine("Type 'help' for commands.");
                     Application.Exit();
-                    break;
+                    return;
             }
-            Console.Clear();
-            Console.WriteLine(hotkeyHelp);
         }    
 
         static void Main(string[] args) //build : dotnet build -r win10-x64
