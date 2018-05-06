@@ -49,7 +49,22 @@ namespace OFE
             "disappointment     - 'Disappointment is Immeasurable'\n"+
             "kronk              - 'Doesn't Make Sense'\n" +
             "run away           - 'Run Away!'\n"+
-            "\n"+
+            "run                - 'Run'\n"+
+            "dota fb            - 'First Blood'\n" +
+            "dota dk            - 'Double Kill'\n" +
+            "dota tk            - 'Triple Kill'\n" +
+            "dota ks            - 'Killing Spree'\n" +
+            "dota mk            - 'Monster Kill'\n" +
+            "mortal kombat      - 'Mortal Kombat'\n"+
+            "si                 - 'Spanish Inquisition'\n"+
+            "last post          - 'Last Post'\n"+
+            "tubthumping        - 'Tubthumping'\n" +
+            "bliss ya           - 'Bliss Yaa'\n"+
+            "bliss              - 'Bliss'\n"+
+            "gems               - 'Gems Are Truly Outrageous'\n" +
+            "gems song          - 'Song From Gems'\n" +
+            "hello there        - 'Hello There'\n" +
+            "\n" +
             "___________________________________________________________\n\n";
 
         static string hotkeyHelp =
@@ -161,7 +176,7 @@ namespace OFE
                     break;
                 case "law":
                     Console.WriteLine("Playing 'Law and Order'");
-                    InjectMicrophone(soundboardPath + "Law_Order.mp3");
+                    InjectMicrophone(soundboardPath + "Law_Order.wav");
                     break;
                 case "hello darkness":
                 case "hello":
@@ -215,6 +230,79 @@ namespace OFE
                 case "run away":
                     Console.WriteLine("Playing 'Run Away!'");
                     InjectMicrophone(soundboardPath + "run_away.wav");
+                    break;
+                case "run":
+                    Console.WriteLine("Playing 'Run'");
+                    InjectMicrophone(soundboardPath + "run.wav");
+                    break;
+                case "dota fb":
+                    Console.WriteLine("Playing 'First Blood'");
+                    InjectMicrophone(soundboardPath + "first_blood.wav");
+                    break;
+                case "dota dk":
+                    Console.WriteLine("Playing 'Double Kill'");
+                    InjectMicrophone(soundboardPath + "double_kill.wav");
+                    break;
+                case "dota tk":
+                    Console.WriteLine("Playing 'Triple Kill'");
+                    InjectMicrophone(soundboardPath + "triple_kill.wav");
+                    break;
+                case "dota ks":
+                    Console.WriteLine("Playing 'Killing Spree'");
+                    InjectMicrophone(soundboardPath + "killing_spree.wav");
+                    break;
+                case "dota mk":
+                    Console.WriteLine("Playing 'Monster kill'");
+                    InjectMicrophone(soundboardPath + "monster_kill.wav");
+                    break;
+                case "mortal kombat":
+                    Console.WriteLine("Playing 'Monster kill'");
+                    InjectMicrophone(soundboardPath + "mortal_kombat.wav");
+                    break;
+                case "si":
+                    Console.WriteLine("Playing 'Spanish Inquisition'");
+                    InjectMicrophone(soundboardPath + "Spanish_Inquisition.wav");
+                    break;
+                case "last post":
+                    Console.WriteLine("Playing 'Last Post'");
+                    InjectMicrophone(soundboardPath + "last_post.wav");
+                    break;
+                case "tubthumping":
+                    Console.WriteLine("Playing 'Tubthumping'");
+                    InjectMicrophone(soundboardPath + "tubthumping.wav");
+                    break;
+                case "bliss ya":
+                    Console.WriteLine("Playing 'Bliss Yaa'");
+                    InjectMicrophone(soundboardPath + "bliss_yaa.wav");
+                    break;
+                case "bliss":
+                    Console.WriteLine("Playing 'Bliss'");
+                    InjectMicrophone(soundboardPath + "bliss.wav");
+                    break;
+
+                case "bill":
+                    Console.WriteLine("Playing 'Bill, Bill, Bill'");
+                    InjectMicrophone(soundboardPath + "bill.wav");
+                    break;
+                case "matt":
+                    Console.WriteLine("Playing 'Matt'");
+                    InjectMicrophone(soundboardPath + "matt.wav");
+                    break;
+                case "hello there":
+                    Console.WriteLine("Playing 'Hello There'");
+                    InjectMicrophone(soundboardPath + "hello_there.wav");
+                    break;
+                case "gems":
+                    Console.WriteLine("Playing 'Gems'");
+                    InjectMicrophone(soundboardPath + "gems.wav");
+                    break;
+                case "gems song":
+                    Console.WriteLine("Playing 'Gems Song'");
+                    InjectMicrophone(soundboardPath + "gems_song.wav");
+                    break;
+                case "cheese":
+                    Console.WriteLine("Playing 'Cheese'");
+                    InjectMicrophone(soundboardPath + "cheese.wav");
                     break;
                 default:
                     break;
@@ -270,10 +358,12 @@ namespace OFE
             switch (e)
             {
                 case Keys.NumPad1://run away
-                    CheckForSound(Pickrandom(new List<string> { "fly", "run away" }));
+                    CheckForSound(Pickrandom(new List<string> { "fly", "run away", "run" }));
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
                     break;
                 case Keys.NumPad2://sad/losing
-                    CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment"}));
+                    CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment", "hello"}));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
                     break;
