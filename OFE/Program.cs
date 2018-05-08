@@ -43,10 +43,10 @@ namespace OFE
             "pentakill          - 'Penta kill'\n"+
             "sweet victoy       - 'Sweet Victoy'\n"+
             "champions          - 'We are the Champions'\n"+
-            "lol victory        - 'League of Legends Victory'\n"+
-            "lol defeat         - 'League of Legends Defeat'\n"+
-            "sad                - 'Sad Violin'\n" +
-            "disappointment     - 'Disappointment is Immeasurable'\n"+
+            "___________________________________________________________\n\n";
+
+        static string help2 =
+            "___________________________________________________________\n\n" +
             "kronk              - 'Doesn't Make Sense'\n" +
             "run away           - 'Run Away!'\n"+
             "run                - 'Run'\n"+
@@ -57,14 +57,48 @@ namespace OFE
             "dota mk            - 'Monster Kill'\n" +
             "mortal kombat      - 'Mortal Kombat'\n"+
             "si                 - 'Spanish Inquisition'\n"+
-            "last post          - 'Last Post'\n"+
             "tubthumping        - 'Tubthumping'\n" +
             "bliss ya           - 'Bliss Yaa'\n"+
             "bliss              - 'Bliss'\n"+
             "gems               - 'Gems Are Truly Outrageous'\n" +
             "gems song          - 'Song From Gems'\n" +
             "hello there        - 'Hello There'\n" +
-            "\n" +
+            "space              - 'Space!'\n"+
+            "later1             - 'A Few Moments Later'\n"+
+            "later2             - 'Twenty Minutes Later'\n"+
+            "later3             - 'Two Hours later'\n" +
+            "later4             - 'One Eternaty Later'\n" +
+            "later5             - 'So Much Later'\n"+
+            "lol victory        - 'League of Legends Victory'\n" +
+            "lol defeat         - 'League of Legends Defeat'\n" +
+            "___________________________________________________________\n\n";
+
+        static string help3 =
+            "___________________________________________________________\n\n" +
+            "sad                - 'Sad Violin'\n" +
+            "disappointment     - 'Disappointment is Immeasurable'\n" +
+            "last post          - 'Last Post'\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
+            "''\n" +
             "___________________________________________________________\n\n";
 
         static string hotkeyHelp =
@@ -119,6 +153,14 @@ namespace OFE
                 case "help":
                     Console.Clear();
                     Console.WriteLine(help);
+                    break;
+                case "help2":
+                    Console.Clear();
+                    Console.WriteLine(help2);
+                    break;
+                case "help3":
+                    Console.Clear();
+                    Console.WriteLine(help3);
                     break;
                 case "clear":
                     Console.Clear();
@@ -303,6 +345,31 @@ namespace OFE
                 case "cheese":
                     Console.WriteLine("Playing 'Cheese'");
                     InjectMicrophone(soundboardPath + "cheese.wav");
+                    break;
+                case "later":
+                case "later1":
+                    Console.WriteLine("Playing 'A Few Moments Later'");
+                    InjectMicrophone(soundboardPath + "sb_fm_later.wav");
+                    break;
+                case "later2":
+                    Console.WriteLine("Playing 'Twenty Minutes Later'");
+                    InjectMicrophone(soundboardPath + "sb_tm_later.wav");
+                    break;
+                case "later3":
+                    Console.WriteLine("Playing 'Two Hours later'");
+                    InjectMicrophone(soundboardPath + "sb_th_later.wav");
+                    break;
+                case "later4":
+                    Console.WriteLine("Playing 'One Eternaty Later'");
+                    InjectMicrophone(soundboardPath + "sb_oe_later.wav");
+                    break;
+                case "later5":
+                    Console.WriteLine("Playing 'So Much Later'");
+                    InjectMicrophone(soundboardPath + "sb_so_much_later.wav");
+                    break;
+                case "space":
+                    Console.WriteLine("Playing 'Space!'");
+                    InjectMicrophone(soundboardPath + "space.wav");
                     break;
                 default:
                     break;
