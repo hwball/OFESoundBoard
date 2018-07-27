@@ -1,0 +1,68 @@
+﻿#command, title, sound file name
+
+fly,Fly You Fools,Fly_you_fools.wav
+deja,Deja Vu,Deja_vu.wav
+a,Metal Gear alert,Alert.mp3
+m,Mission Failed,mission_failed.wav
+r,Why are you running,running.wav
+mad,Is only game,mad.wav
+shroud,The fuck i am,the_fuck_i_am.mp3
+nani,Nani!,nani.wav
+omae,Omae wa,Omae_wa.wav
+oof,oof,oof.mp3
+brave,Brave sir robin,brave_sir_robin.wav
+law,Law and Order Dun dun,Law_Order.wav
+hello,Hello Darkness my old friend,HELLO_DARKNESS.mp3
+leeroy,Leeroy Jenkins,leeroy_jenkins.mp3
+losing horn,Losing horn,losing_horn.wav
+wilhelm,Wilhelm Scream,Wilhelm_Scream.mp3
+pentakill,Penta kill,pentakill.wav
+sweet victoy,Sweet Victoy,sweet_victory.wav
+champions,We are the Champions,champions.wav
+lol victory,League of Legends Victory,victory.mp3
+lol defeat,Playing 'League of Legends Defeat,defeat.mp3
+sad,Sad Violin,sad_violin.wav
+disappointment,Disappointment is Immeasurable,disappointment.wav
+kronk,It Doesn't Make Sense,kronk.wav
+run away,Run Away!,run_away.wav
+run,Run,run.wav
+dota fb,First Blood,first_blood.wav
+dota dk,Double Kill,double_kill.wav
+dota tk,Triple Kill,triple_kill.wav
+dota ks,Killing Spree,killing_spree.wav
+dota mk,Monster kill,monster_kill.wav
+mortal kombat,Monster kill,mortal_kombat.wav
+si,Spanish Inquisition,Spanish_Inquisition.wav
+last post,Last Post,last_post.wav
+tubthumping,Tubthumping,tubthumping.wav
+bliss ya,Bliss Yaa,bliss_yaa.wav
+bliss,Bliss,bliss.wav
+bill,Bill-Bill-Bill,bill.wav
+matt,Matt,matt.wav
+hello there,Hello There,hello_there.wav
+gems,Gems,gems.wav
+gems song,Gems Song,gems_song.wav
+cheese,Cheese,cheese.wav
+later1,A Few Moments Later,sb_fm_later.wav
+later2,Twenty Minutes Later,sb_tm_later.wav"
+later3,Two Hours later,sb_th_later.wav
+later4,One Eternaty Later,sb_oe_later.wav
+later5,So Much Later,sb_so_much_later.wav
+space,Space!,space.wav
+yoo,Yoooooooo!,yoo.wav
+cool,Cool,cool.wav
+best,Best Arround,best_around.wav
+ydk de way,You don't know de whey,you_do_not_know_de_whey.wav
+dyk de way,Do you know de whey,do_you_know_de_whey.wav
+this is america,This is America,this_is_america.wav
+hell no,Oh Hell NO!,hell_no.wav
+perfect world,In a perfect World,perfect_world.wav
+soviet,Soviet Anthem,soviet_anthem.wav
+laugh,Laugh Track,laugh_track.wav
+yanny,Yanny,yanny.wav
+dont feed,Don't Feed-Faker',dont_feed_faker.wav
+joke,Ba Dum Tss,ba_dum_tss.wav
+men running,Men are running from the battlefield,men_running.wav
+shameful,SHAMEFUL DISPLAY,SHAMEFUL_DISPLAY.wav
+landing,Another Happy landing,landing.wav
+flash,Flash!,flash.wav

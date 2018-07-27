@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,107 +15,39 @@ namespace OFE
 {
     class Program
     {
+
+        static Dictionary<String, Tuple<String, String>> SoundDict;
+        static List<String> helpList;
+
         static string soundboardPath = "C:\\Users\\Hamish\\Music\\Soundboard\\";
-        static string videoDownloadPath = "C:\\Users\\Hamish\\Music\\Youtube\\";
-
-        static string help =
-            "___________________________________________________________\n\n" +
-            "help               - Show Commands \n"+
-            "hotkey             - start to hot key mode\n"+
-            "numLock            - Stop hotkey mode\n"+
-            "play <youtube_Url> - plays the audio from the video \n"+
-            "\n"+
-            "fly                - 'Fly You Fools'\n" +
-            "deja               - 'Deja Vu' \n" +
-            "a                  - 'Metal Gear alert' \n" +
-            "m                  - 'Mission Failed' \n" +
-            "r                  - 'Why are you running' \n" +
-            "mad                - 'Is only game' \n" +
-            "shroud             - 'The fuck i am' \n" +
-            "nani               - 'Nani!'\n" +
-            "omae               - 'Omae wa'\n" +
-            "off                - 'oof'\n" +
-            "brave              - 'Brave sir robin'\n" +
-            "law                - 'Law and Order Dun dun'\n"+
-            "hello              - 'Hello Darkness my old friend'\n"+
-            "leeroy             - 'Leeroy Jenkins'\n"+
-            "losing horn        - 'Losing horn'\n"+
-            "wilhelm            - 'Wilhelm Scream'\n"+
-            "pentakill          - 'Penta kill'\n"+
-            "sweet victoy       - 'Sweet Victoy'\n"+
-            "champions          - 'We are the Champions'\n"+
-            "___________________________________________________________\n\n";
-
-        static string help2 =
-            "___________________________________________________________\n\n" +
-            "kronk              - 'Doesn't Make Sense'\n" +
-            "run away           - 'Run Away!'\n"+
-            "run                - 'Run'\n"+
-            "dota fb            - 'First Blood'\n" +
-            "dota dk            - 'Double Kill'\n" +
-            "dota tk            - 'Triple Kill'\n" +
-            "dota ks            - 'Killing Spree'\n" +
-            "dota mk            - 'Monster Kill'\n" +
-            "mortal kombat      - 'Mortal Kombat'\n"+
-            "si                 - 'Spanish Inquisition'\n"+
-            "tubthumping        - 'Tubthumping'\n" +
-            "bliss ya           - 'Bliss Yaa'\n"+
-            "bliss              - 'Bliss'\n"+
-            "gems               - 'Gems Are Truly Outrageous'\n" +
-            "gems song          - 'Song From Gems'\n" +
-            "hello there        - 'Hello There'\n" +
-            "space              - 'Space!'\n"+
-            "later1             - 'A Few Moments Later'\n"+
-            "later2             - 'Twenty Minutes Later'\n"+
-            "later3             - 'Two Hours later'\n" +
-            "later4             - 'One Eternaty Later'\n" +
-            "later5             - 'So Much Later'\n"+
-            "lol victory        - 'League of Legends Victory'\n" +
-            "lol defeat         - 'League of Legends Defeat'\n" +
-            "___________________________________________________________\n\n";
-
-        static string help3 =
-            "___________________________________________________________\n\n" +
-            "sad                - 'Sad Violin'\n" +
-            "disappointment     - 'Disappointment is Immeasurable'\n" +
-            "last post          - 'Last Post'\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "''\n" +
-            "___________________________________________________________\n\n";
+        static string videoDownloadPath = "C:\\Users\\Hamish\\Music\\Youtube\\";     
 
         static string hotkeyHelp =
-            " __________________________________________  \n" +
-            "|                                          | \n" +
-            "| NumLock       -      'Turn Off hotkeys'  | \n" +
-            "|__________________________________________| \n" +
-            "|   Numpad 7   |   Numpad 8   |   Numpad 9 | \n" +
-            "|  '!Sense'    |'Is Only Game'|   'Nani!'  | \n" +
-            "|______________|______________|____________| \n" +
-            "|   Numpad 4   |   Numpad 5   |   Numpad 6 | \n" +
-            "| 'Why Running'|   'Alert'    |   'Deja Vu'| \n" +
-            "|______________|______________|____________| \n" +
-            "|   Numpad 1   |   Numpad 2   |   Numpad 3 | \n" +
-            "|  'Run Away'  |   'Losing'   |   'Wining' | \n" +
-            "|______________|______________|____________| \n";
+            "         __________________________________________  \n" +
+            "        |                                          | \n" +
+            "        | NumLock       -      'Turn Off hotkeys'  | \n" +
+            "        |__________________________________________| \n" +
+            "        |   Numpad 7   |   Numpad 8   |   Numpad 9 | \n" +
+            "        |  '!Sense'    |'Is Only Game'|   'Nani!'  | \n" +
+            "        |______________|______________|____________| \n" +
+            "        |   Numpad 4   |   Numpad 5   |   Numpad 6 | \n" +
+            "        | 'Why Running'|   'Alert'    |   'Deja Vu'| \n" +
+            "        |______________|______________|____________| \n" +
+            "        |   Numpad 1   |   Numpad 2   |   Numpad 3 | \n" +
+            "        |  'Run Away'  |   'Losing'   |   'Wining' | \n" +
+            "        |______________|______________|____________| \n";
+
+        static string functionKeyHelp =
+            "   _______________________________________________________    \n" +
+            "  |   F1    |   F2   |   F3    |   F4    |  F5   |   F6   |   \n" +
+            "  | 'Brave' | 'Law'  |'Monster'| 'Happy' |'Hello'|'later' |   \n" +
+            "  |         |        | 'kill'  |'Landing'|'there'|        |   \n" +
+            " _|_________|________|_________|_________|_______|________|_  \n" +
+            "|    F7   |   F8   |   F9    |   F10    |  F11   |   F12    | \n" +
+            "|  'Dont' | 'Yoo'  | 'Laugh' | 'soviet' | 'Hell' |  'Cool'  | \n" +
+            "|  'Feed' |        | 'Track' |          |  'NO!' |          | \n" +
+            "|_________|________|_________|__________|________|__________| \n";
+
 
         private static Random random = new Random();
 
@@ -122,7 +55,7 @@ namespace OFE
         {
             //output 
             var outputDevice = new WaveOutEvent();
-            outputDevice.DeviceNumber = 3;
+            outputDevice.DeviceNumber = 1;
             var outputDeviceMe = new WaveOutEvent();
 
             var audioFile = new AudioFileReader(audioFileName);
@@ -130,11 +63,13 @@ namespace OFE
 
             //using (outputDevice)
             //{
-            //for (int n = -1; n < WaveOut.DeviceCount; n++)
-            //{
-            //    var caps = WaveOut.GetCapabilities(n);
-            //    Console.WriteLine($"{n}: {caps.ProductName}");
+            //    for (int n = -1; n < WaveOut.DeviceCount; n++)
+            //    {
+            //        var caps = WaveOut.GetCapabilities(n);
+            //        Console.WriteLine($"{n}: {caps.ProductName}");
+            //    }
             //}
+
             outputDeviceMe.Init(audioFileMe);
             outputDevice.Init(audioFile);
             outputDevice.Play();
@@ -143,249 +78,56 @@ namespace OFE
             {
                 Thread.Sleep(1000);
             }
+            outputDevice.Dispose();
             Console.WriteLine("Done.\n");
         }
 
         private static void CheckForSound(string soundName)
         {
-            switch (soundName.ToLower())
+            Console.WriteLine("Playing '" + SoundDict[soundName].Item1 + "'");
+            InjectMicrophone(soundboardPath + SoundDict[soundName].Item2);
+        }
+
+        private static void CheckForHelpCommand(string command)
+        {
+            if (command.StartsWith("help"))
             {
-                case "help":
-                    Console.Clear();
-                    Console.WriteLine(help);
-                    break;
-                case "help2":
-                    Console.Clear();
-                    Console.WriteLine(help2);
-                    break;
-                case "help3":
-                    Console.Clear();
-                    Console.WriteLine(help3);
-                    break;
+                try
+                {
+                    if (command == "help")
+                    {
+                        Console.Clear();
+                        Console.WriteLine(helpList[0]);
+                    }
+
+                    var result = Convert.ToInt32(Regex.Match(command, @"\d+$").Value);
+
+                    if (result < helpList.Count)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(helpList[result]);
+                    }
+                }
+                catch (System.FormatException e)
+                {
+                    //ignore
+                }
+
+            }
+
+            switch (command.ToLower())
+            { 
                 case "clear":
                     Console.Clear();
+                    Console.WriteLine("Type 'help' for commands.");
                     break;
-                case "fly":
-                    Console.WriteLine("Playing 'Fly You Fools'");
-                    InjectMicrophone(soundboardPath + "Fly_you_fools.wav");
-                    break;
-                case "deja vu":
-                case "deja":
-                    Console.WriteLine("Playing 'Deja Vu'");
-                    InjectMicrophone(soundboardPath + "Deja_vu.wav");
-                    break;
-                case "alert":
-                case "a":
-                    Console.WriteLine("Playing 'Metal Gear alert'");
-                    InjectMicrophone(soundboardPath + "Alert.mp3");
-                    break;
-                case "m":
-                case "mission":
-                case "mission failed":
-                    Console.WriteLine("Playing 'Mission Failed'");
-                    InjectMicrophone(soundboardPath + "mission_failed.wav");
-                    break;
-                case "r":
-                case "running":
-                    Console.WriteLine("Playing 'Why are you running'");
-                    InjectMicrophone(soundboardPath + "running.wav");
-                    break;
-                case "mad":
-                case "only game":
-                    Console.WriteLine("Playing 'is only game'");
-                    InjectMicrophone(soundboardPath + "mad.wav");
-                    break;
-                case "shroud":
-                    Console.WriteLine("Playing 'The fuck i am'");
-                    InjectMicrophone(soundboardPath + "the_fuck_i_am.mp3");
-                    break;
-                case "nani":
-                    Console.WriteLine("Playing 'Nani!'");
-                    InjectMicrophone(soundboardPath + "nani.wav");
-                    break;
-                case "omae":
-                    Console.WriteLine("Playing 'Omae wa'");
-                    InjectMicrophone(soundboardPath + "Omae_wa.wav");
-                    break;
-                case "oof":
-                    Console.WriteLine("Playing 'Oof'");
-                    InjectMicrophone(soundboardPath + "oof.mp3");
-                    break;
-                case "sir robin":
-                case "brave":
-                    Console.WriteLine("Playing 'Brave sir robin'");
-                    InjectMicrophone(soundboardPath + "brave_sir_robin.wav");
-                    break;
-                case "law":
-                    Console.WriteLine("Playing 'Law and Order'");
-                    InjectMicrophone(soundboardPath + "Law_Order.wav");
-                    break;
-                case "hello darkness":
-                case "hello":
-                    Console.WriteLine("Playing 'Hello Darkness my old friend'");
-                    InjectMicrophone(soundboardPath + "HELLO_DARKNESS.mp3");
-                    break;
-                case "leeroy":
-                    Console.WriteLine("Playing 'Leeroy Jenkins'");
-                    InjectMicrophone(soundboardPath + "leeroy_jenkins.mp3");
-                    break;
-                case "losing horn":
-                    Console.WriteLine("Playing 'losing horn'");
-                    InjectMicrophone(soundboardPath + "losing_horn.wav");
-                    break;
-                case "wilhelm":
-                    Console.WriteLine("Playing 'Wilhelm Scream'");
-                    InjectMicrophone(soundboardPath + "Wilhelm_Scream.mp3");
-                    break;
-                case "pentakill":
-                    Console.WriteLine("Playing 'Penta kill'");
-                    InjectMicrophone(soundboardPath + "pentakill.wav");
-                    break;
-                case "sweet victory":
-                    Console.WriteLine("Playing 'Sweet Victoy'");
-                    InjectMicrophone(soundboardPath + "sweet_victory.wav");
-                    break;
-                case "champions":
-                    Console.WriteLine("Playing 'We are the Champions'");
-                    InjectMicrophone(soundboardPath + "champions.wav");
-                    break;
-                case "lol victory":
-                    Console.WriteLine("Playing 'League of Legends Victory'");
-                    InjectMicrophone(soundboardPath + "victory.mp3");
-                    break;
-                case "lol defeat":
-                    Console.WriteLine("Playing 'League of Legends Defeat'");
-                    InjectMicrophone(soundboardPath + "defeat.mp3");
-                    break;
-                case "sad":
-                    Console.WriteLine("Playing 'Sad Violin'");
-                    InjectMicrophone(soundboardPath + "sad_violin.wav");
-                    break;
-                case "disappointment":
-                    Console.WriteLine("Playing 'Disappointment is Immeasurable'");
-                    InjectMicrophone(soundboardPath + "disappointment.wav");
-                    break;
-                case "kronk":
-                    Console.WriteLine("Playing 'It Doesn't Make Sense'");
-                    InjectMicrophone(soundboardPath + "kronk.wav");
-                    break;
-                case "run away":
-                    Console.WriteLine("Playing 'Run Away!'");
-                    InjectMicrophone(soundboardPath + "run_away.wav");
-                    break;
-                case "run":
-                    Console.WriteLine("Playing 'Run'");
-                    InjectMicrophone(soundboardPath + "run.wav");
-                    break;
-                case "dota fb":
-                    Console.WriteLine("Playing 'First Blood'");
-                    InjectMicrophone(soundboardPath + "first_blood.wav");
-                    break;
-                case "dota dk":
-                    Console.WriteLine("Playing 'Double Kill'");
-                    InjectMicrophone(soundboardPath + "double_kill.wav");
-                    break;
-                case "dota tk":
-                    Console.WriteLine("Playing 'Triple Kill'");
-                    InjectMicrophone(soundboardPath + "triple_kill.wav");
-                    break;
-                case "dota ks":
-                    Console.WriteLine("Playing 'Killing Spree'");
-                    InjectMicrophone(soundboardPath + "killing_spree.wav");
-                    break;
-                case "dota mk":
-                    Console.WriteLine("Playing 'Monster kill'");
-                    InjectMicrophone(soundboardPath + "monster_kill.wav");
-                    break;
-                case "mortal kombat":
-                    Console.WriteLine("Playing 'Monster kill'");
-                    InjectMicrophone(soundboardPath + "mortal_kombat.wav");
-                    break;
-                case "si":
-                    Console.WriteLine("Playing 'Spanish Inquisition'");
-                    InjectMicrophone(soundboardPath + "Spanish_Inquisition.wav");
-                    break;
-                case "last post":
-                    Console.WriteLine("Playing 'Last Post'");
-                    InjectMicrophone(soundboardPath + "last_post.wav");
-                    break;
-                case "tubthumping":
-                    Console.WriteLine("Playing 'Tubthumping'");
-                    InjectMicrophone(soundboardPath + "tubthumping.wav");
-                    break;
-                case "bliss ya":
-                    Console.WriteLine("Playing 'Bliss Yaa'");
-                    InjectMicrophone(soundboardPath + "bliss_yaa.wav");
-                    break;
-                case "bliss":
-                    Console.WriteLine("Playing 'Bliss'");
-                    InjectMicrophone(soundboardPath + "bliss.wav");
-                    break;
-
-                case "bill":
-                    Console.WriteLine("Playing 'Bill, Bill, Bill'");
-                    InjectMicrophone(soundboardPath + "bill.wav");
-                    break;
-                case "matt":
-                    Console.WriteLine("Playing 'Matt'");
-                    InjectMicrophone(soundboardPath + "matt.wav");
-                    break;
-                case "hello there":
-                    Console.WriteLine("Playing 'Hello There'");
-                    InjectMicrophone(soundboardPath + "hello_there.wav");
-                    break;
-                case "gems":
-                    Console.WriteLine("Playing 'Gems'");
-                    InjectMicrophone(soundboardPath + "gems.wav");
-                    break;
-                case "gems song":
-                    Console.WriteLine("Playing 'Gems Song'");
-                    InjectMicrophone(soundboardPath + "gems_song.wav");
-                    break;
-                case "cheese":
-                    Console.WriteLine("Playing 'Cheese'");
-                    InjectMicrophone(soundboardPath + "cheese.wav");
-                    break;
-                case "later":
-                case "later1":
-                    Console.WriteLine("Playing 'A Few Moments Later'");
-                    InjectMicrophone(soundboardPath + "sb_fm_later.wav");
-                    break;
-                case "later2":
-                    Console.WriteLine("Playing 'Twenty Minutes Later'");
-                    InjectMicrophone(soundboardPath + "sb_tm_later.wav");
-                    break;
-                case "later3":
-                    Console.WriteLine("Playing 'Two Hours later'");
-                    InjectMicrophone(soundboardPath + "sb_th_later.wav");
-                    break;
-                case "later4":
-                    Console.WriteLine("Playing 'One Eternaty Later'");
-                    InjectMicrophone(soundboardPath + "sb_oe_later.wav");
-                    break;
-                case "later5":
-                    Console.WriteLine("Playing 'So Much Later'");
-                    InjectMicrophone(soundboardPath + "sb_so_much_later.wav");
-                    break;
-                case "space":
-                    Console.WriteLine("Playing 'Space!'");
-                    InjectMicrophone(soundboardPath + "space.wav");
+                case "exit":
+                    Application.Exit();
                     break;
                 default:
                     break;
             }
         }
-
-        //public static void CheckForSongs(string soundName)
-        //{
-        //    switch (soundName.ToLower())
-        //    {
-        //        case "pumped":
-        //            Console.WriteLine("Playing 'Pumped up Kicks'");
-        //            InjectMicrophone(soundboardPath + "pumped_up_kicks.mp3");
-        //            break;
-        //    }
-        //}
 
         public static void play_youtube_audio(string url)
         {
@@ -424,55 +166,138 @@ namespace OFE
 
             switch (e)
             {
+                //Keypad
                 case Keys.NumPad1://run away
                     CheckForSound(Pickrandom(new List<string> { "fly", "run away", "run" }));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad2://sad/losing
                     CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment", "hello"}));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad3://winning
-                    CheckForSound(Pickrandom(new List<string> { "sweet victory", "champions", "lol victoy" }));
+                    CheckForSound(Pickrandom(new List<string> { "sweet victory", "champions", "lol victoy", "best around" }));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad4:
                     CheckForSound("r");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad5:
                     CheckForSound("a");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad6:
                     CheckForSound("deja");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad7:
                     CheckForSound("kronk");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad8:
                     CheckForSound("mad");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad9:
                     CheckForSound("nani");
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumLock:
                     Console.Clear();
                     Console.WriteLine("Type 'help' for commands.");
                     Application.Exit();
+                    return;
+                //function keys
+                case Keys.F1://run away
+                    CheckForSound("brave");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F2://sad/losing
+                    CheckForSound("law");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F3://winning
+                    CheckForSound("dota mk");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F4:
+                    CheckForSound("landing");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F5:
+                    CheckForSound("hello there");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F6:
+                    CheckForSound("later");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F7:
+                    CheckForSound("dont feed");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F8:
+                    CheckForSound("yoo");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F9:
+                    CheckForSound("laugh");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    break;
+                case Keys.F10:
+                    CheckForSound("soviet");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    return;
+                case Keys.F11:
+                    CheckForSound("hell no");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
+                    return;
+                case Keys.F12:
+                    CheckForSound("cool");
+                    Console.Clear();
+                    Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
                     return;
             }
         }    
@@ -484,16 +309,28 @@ namespace OFE
 
 
             Console.WriteLine("Type 'help' for commands.");
+
+            SoundDict = SoundFactory.BuildSoundList();
+
+            helpList = SoundFactory.BuildHelpList(SoundDict);
+
+            //foreach (var thing in help)
+            //{
+            //    Console.WriteLine(thing);
+            //}
+            //while (true)
+            //{
+
+            //}
+
             while (true)
             {
-                string line = Console.ReadLine();
-                if (line == "exit") // exit check
-                {
-                    break;
-                }else if (line.ToLower() == "hotkey") //hot key mode
+                string line = Console.ReadLine().ToLower();
+                if (line.ToLower() == "hotkey") //hot key mode
                 {
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
+                    Console.WriteLine(functionKeyHelp);
 
                     LowLevelKeyboardHook kbh = new LowLevelKeyboardHook();
                     kbh.OnKeyPressed += kbh_OnKeyPressed;
@@ -502,13 +339,14 @@ namespace OFE
                     Application.Run();
 
                     kbh.UnHookKeyboard(); 
-                }else if(line.ToLower().StartsWith("play ")) //youtube mode
-                {
-                    play_youtube_audio(line.Substring(5, line.Length-5));
                 }
-                else //console mode
-                {
+                else if(SoundDict.ContainsKey(line))//console mode
+                {    
                     CheckForSound(line);
+                }
+                else
+                {
+                    CheckForHelpCommand(line);
                 }
             }
         }
