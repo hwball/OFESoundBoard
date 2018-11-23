@@ -174,13 +174,13 @@ namespace OFE
                     Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad2://sad/losing
-                    CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment", "hello"}));
+                    CheckForSound(Pickrandom(new List<string> { "losing horn", "m", "lol defeat", "sad", "disappointment", "hello", "bother", "twin", "didntwant"}));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
                     Console.WriteLine(functionKeyHelp);
                     break;
                 case Keys.NumPad3://winning
-                    CheckForSound(Pickrandom(new List<string> { "sweet victory", "champions", "lol victoy", "best around" }));
+                    CheckForSound(Pickrandom(new List<string> { "sweet victory", "champions", "lol victory", "best", "ff victory", "ctwin", "gg" }));
                     Console.Clear();
                     Console.WriteLine(hotkeyHelp);
                     Console.WriteLine(functionKeyHelp);

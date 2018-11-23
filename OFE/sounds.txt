@@ -66,3 +66,34 @@ men running,Men are running from the battlefield,men_running.wav
 shameful,SHAMEFUL DISPLAY,SHAMEFUL_DISPLAY.wav
 landing,Another Happy landing,landing.wav
 flash,Flash!,flash.wav
+airhorn,Airhorn,airhorn.mp3
+stop,Stop You Violated The Law!,StopYouViolatedTheLaw.wav
+harvesting,It's almost harvesting season,almostHarvestingSeason.wav
+fancy,Fancy,fancy.wav
+gypsy,Just like the gypsy woman said,GypsyWoman.wav
+bazinga,Bazinga,bazinga.wav
+didntwant,One Thing we didn't want to happen,didntwant.wav
+ctwin,CT Win,ctwin.wav
+drumroll,Drumroll,drumroll.wav
+dun,dunDunDuuun,dunDunDuuun.wav
+error,error,error.wav
+xfiles,xfiles,xfiles.wav
+fusrodah,fus-ro-dah,fus-ro-dah.wav
+gg,gg,gg.wav
+ohno,Oh No,ohno.wav
+duel,Time to duel,duel.wav
+fup,It was at this moment that he knew he f-ed up,it-was-at-this-moment-that-he-he-knew-he-f-cked-up.wav
+rumble,Lets get reddy to rumble,RUMBLE.wav
+potatosalad,Sand in the potato salad,POTATOSALAD.wav
+wololo,wololo,wololo.wav
+twin,T win,twin.wav
+allreadydead,Stop hes already dead,Stop hes already dead.wav
+tuturu,tuturu,tuturu.wav
+dc,user disconnected from your channel,user disconnected from your channel.wav
+joined,user joined your channel,user joined your channel.wav
+ff victory,FF victory,victoryff.wav
+lommy,What the fuck is a Lommy,What the fuck is a Lommy.wav
+bother,Oh Bother,Oh Bother.wav
+yanp,You are not prepared,yanp.wav
+got him,We Got Him,we_got_him.wav
+doot,Doot,doot.mp3
